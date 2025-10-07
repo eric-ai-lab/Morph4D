@@ -1,6 +1,6 @@
-# Morph4D
+# MorphoSim
 
-Morpho4D: An Interactive, Controllable, and Editable Text-to-4D World Simulator
+MorphoSim: An Interactive, Controllable, and Editable Language-guided 4D World Simulator
 
 
 ## TODO
