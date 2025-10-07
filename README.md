@@ -33,3 +33,14 @@ bash run.sh e2e
 
 
 ## Citation
+```bibtex
+@misc{he2025morphosiminteractivecontrollableeditable,
+      title={MorphoSim: An Interactive, Controllable, and Editable Language-guided 4D World Simulator}, 
+      author={Xuehai He and Shijie Zhou and Thivyanth Venkateswaran and Kaizhi Zheng and Ziyu Wan and Achuta Kadambi and Xin Eric Wang},
+      year={2025},
+      eprint={2510.04390},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2510.04390}, 
+}
+```
