@@ -3,7 +3,7 @@
 
 <h3>MorphoSim: An Interactive, Controllable, and Editable Language-guided 4D World Simulator</h3>
 
-👤 Xuehai He · Shijie Zhou · Thivyanth Venkateswaran · Kaizhi Zheng · Ziyu Wan · Achuta Kadambi · Xin Eric Wang
+👤 Xuehai He* · Shijie Zhou* · Thivyanth Venkateswaran · Kaizhi Zheng · Ziyu Wan · Achuta Kadambi · Xin Eric Wang
 
 🔗 <a href="https://arxiv.org/abs/2510.04390">arXiv</a> &nbsp;|&nbsp; 🎬 <a href="#MorphoSim.mp4">Demo Video</a>
 
