@@ -1,6 +1,13 @@
-# MorphoSim
 
-MorphoSim: An Interactive, Controllable, and Editable Language-guided 4D World Simulator
+<div align="center">
+
+<h3>MorphoSim: An Interactive, Controllable, and Editable Language-guided 4D World Simulator</h3>
+
+👤 Xuehai He · Shijie Zhou · Thivyanth Venkateswaran · Kaizhi Zheng · Ziyu Wan · Achuta Kadambi · Xin Eric Wang
+
+🔗 <a href="https://arxiv.org/abs/2510.04390">arXiv</a> &nbsp;|&nbsp; 🎬 <a href="#MorphoSim.mp4">Demo Video</a>
+
+</div>
 
 
 ## TODO
@@ -8,6 +15,7 @@ MorphoSim: An Interactive, Controllable, and Editable Language-guided 4D World S
 - [ ] Huggingface setup
 - [ ] Release training code
 - [ ] Release inference code
+- [ ] Release demo
 
 
 ## Environment Setup
@@ -30,6 +38,12 @@ Generate an editable 4D scene with prompt "A teal robot is cooking food in a kit
 bash run.sh e2e
 ```
 
+## Demo video
+
+<video controls width="720" muted playsinline poster="morphosim_thumbnail.jpg">
+  <source src="MorphoSim.mp4" type="video/mp4">
+  <a href="MorphoSim.mp4">direct link</a>.
+</video>
 
 
 ## Citation
