@@ -1,0 +1,185 @@
+# from .4
+# from configs/iphone/iphone_sk_grow.yaml
+abl_no_baking_flag: True # !
+
+# ! debug
+# abl_no_semantic_drag_flag: True # !
+
+dataset_mode: nerfies
+
+spatial_unit_meter: 0.05
+spatial_unit_world_flag: False
+
+t_subsample: 1
+temporal_diff_shift: [1, 2, 9]
+temporal_diff_weight: [1.0, 0.6, 0.4]
+
+max_sph_order: 3 #1
+pix_subsample: 1
+flow_interval: [1, 2]
+
+dino_name: dino # dino_lr
+semantic_th_quantile: 0.9 #0.95
+
+use_short_flow: False
+
+recomp_dyn_mask_consider_inside_dyn: True
+
+mask_prop_steps: 8
+mask_consider_track: True
+mask_consider_track_dilate_radius: 21
+mask_init_erode: 14
+
+epi_error_th_factor: 100 #400.0 # default
+depth_boundary_th: 0.1 #100.0
+
+normal_patch_size: 7
+normal_nn_dist_th: 0.04
+normal_nn_min_cnt: 3
+
+static_scf:
+  total_steps: 0
+  lr_cam_f: 0.0
+  # ! For now disable this
+  lr_cam_q: 0.0
+  lr_cam_t: 0.0
+  fov_fallback: 54.0
+  fov_search_min_interval: 8
+  fov_interval_single: False
+
+static_gs:
+  n_init: 50000
+  total_steps: 10000
+  # optim_cam_after_steps: 3000
+
+  # ! debug
+  optim_cam_after_steps: 1000000000
+
+  lambda_rgb: 1.0
+  lambda_dep: 0.5
+  lambda_normal: 0.1
+  random_bg: False
+  lr_sph_rest_factor: 20.0 #8.0 #4.0
+
+  viz_interval: 3000
+
+  lr_p: 0.0003
+  lr_p_final: 0.000001
+  lr_q: 0.001
+  lr_s: 0.01
+  lr_o: 0.3
+  lr_sph: 0.0025
+
+  s_ctrl:
+    reset_steps: 2001
+    densify_steps: 400
+    prune_steps: 400
+    reset_opacity: 0.01
+    prune_opacity_th: 0.011
+    densify_max_grad: 0.0001 #0.0002
+
+dyn_scf:
+  lr_p: 0.01
+  lr_q: 0.01
+  lr_sig: 0.01
+  lr_p_finetune: 0.001
+  lr_q_finetune: 0.001
+  lr_sig_finetune: 0.001
+
+  max_node_num: 8192 #15000
+  topo_k: 10
+  resample_flag: False # ! modified
+
+  stage4_steps: 0 # ! debug
+  grow_node_by_coverage: False
+
+  topo_curve_dist_top_k: 7
+  topo_curve_dist_sample_T: 80
+
+  sigma_max_ratio: 10.0 #1.0 #0.6 #1.0
+  sigma_init_ratio: 1.0
+
+  topo_th_ratio: 5.0 # 10 ! important
+  vel_jitter_th_value: 0.5 # bear large velocity
+  min_valid_cnt_ratio: 0.1
+
+  mlevel_list: [1, 8]
+  mlevel_k_list: [16, 8]
+  mlevel_w_list: [0.4, 0.3]
+  mlevel_resample_steps: 32
+
+  viz_interval: 100 #-1
+
+dyn_gs:
+  topo_th_ratio: 3.0
+
+  # s_gs_ctrl_start_ratio: 0.0 # ! modified
+  # opa_init_value: 0.01 # ! modified
+
+  node_ctrl_start_steps: 100000000 # !
+  skinning_corr_start_steps: 1 # !
+
+  n_init: 50000 # 1,3
+  init_key_frames: 200 #50 #10 #20 # 10
+  leaf_local_flag: True #False
+  model_pixel_subsample: 2
+
+  total_steps: 20000
+  # optim_cam_after_steps: 5000
+  # ! debug
+  optim_cam_after_steps: 10000000000
+
+  dyn_error_grow_steps: [5000, 9000, 13000, 17000] # !
+  dyn_error_grow_th: 0.2 # !
+  dyn_error_grow_num_frames: 4 # !
+  dyn_scf_prune_steps: [8500, 12500, 16500]
+  dyn_scf_prune_sk_th: 0.005
+
+  lr_p: 0.00016
+  lr_p_final: 0.0000016
+  lr_q: 0.001
+  lr_s: 0.005
+  lr_o: 0.05
+  lr_sph: 0.0025
+  lr_np: 0.0003 #! 0.00016
+  lr_np_final: 0.0000016
+  lr_nq: 0.001 # ! 0.001
+  lr_nq_final: 0.00001
+  lr_nsig: 0.01
+  lr_w: 0.01
+  lr_sph_rest_factor: 20.0 #8.0 #4.0
+
+  lambda_rgb: 1.0
+  lambda_dep: 0.05
+  lambda_normal: 0.2
+  geo_reg_start_steps: 1000
+
+  # lambda_vel_xyz_reg: 30.0
+  # lambda_vel_rot_reg: 30.0
+  # lambda_acc_rot_reg: 10.0
+  # lambda_acc_xyz_reg: 10.0
+  # lambda_arap_coord: 3.0
+  # lambda_arap_len: 3.0
+  lambda_vel_xyz_reg: 30.0
+  lambda_vel_rot_reg: 30.0
+  lambda_acc_rot_reg: 100.0
+  lambda_acc_xyz_reg: 100.0
+  lambda_arap_coord: 10.0
+  lambda_arap_len: 10.0
+
+  viz_interval: 1999 #-1 #2999
+  d_ctrl:
+    densify_steps: 400
+    prune_steps: 400
+    densify_max_grad: 0.0001 #0.0002
+
+    reset_steps: 2001
+    prune_opacity_th: 0.011 # 0.05
+    reset_opacity: 0.01
+  s_ctrl:
+    reset_steps: 2001
+    densify_steps: 400
+    densify_max_grad: 0.0001 #0.0002
+    prune_steps: 400
+    reset_opacity: 0.01
+    prune_opacity_th: 0.011

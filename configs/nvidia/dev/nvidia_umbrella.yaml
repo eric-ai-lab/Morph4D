@@ -1,0 +1,97 @@
+dataset_mode: nvidia
+
+spatial_unit_meter: 0.02 #0.01 #0.02 # 0.05
+
+t_subsample: 1
+temporal_diff_shift: [2, 4]
+temporal_diff_weight: [0.6, 0.4]
+
+max_sph_order: 1
+pix_subsample: 1
+flow_interval: [1] #[1, 4, 8, 16, 32] #[1, 4]
+semantic_th_quantile: 0.95 #1.0 #0.95
+
+use_short_flow: False
+
+mask_prop_steps: 2
+epi_error_th_factor: 100 #400.0 #100.0 # default 400
+
+static_scf:
+  total_steps: 2000 
+  lr_cam_f: 0.0003
+  fov_fallback: 40.0
+  fov_search_min_interval: 2
+  fov_interval_single: False
+  # deform_depth: False
+
+static_gs:
+  n_init: 100000
+  total_steps: 8000 #3000
+  optim_cam_after_steps: 6000
+
+  lambda_rgb: 1.0
+  lambda_dep: 0.1
+  lambda_normal: 0.1
+  random_bg: False
+
+dyn_scf:
+  lr_p: 0.1
+  lr_q: 0.1
+  max_num_tracks: 20000
+  topo_k: 10
+
+  topo_curve_dist_top_k: 7
+  topo_curve_dist_sample_T: 80
+
+  sigma_max_ratio: 1.0 #0.6 #1.0
+  sigma_init_ratio: 0.1
+  lambda_xyz_acc: 0.1
+
+  topo_th_ratio: 5.0 #10.0 # ! important
+  min_valid_cnt_ratio: 0.1
+
+  mlevel_list: [1, 4]
+  mlevel_k_list: [8, 8]
+  mlevel_w_list: [0.4, 0.3]
+  mlevel_resample_steps: 32
+
+  viz_interval: 200
+
+dyn_gs:
+  topo_th_ratio: 3.0
+  n_init: 50000
+  init_key_frames: 10 # 10
+  leaf_local_flag: True
+  model_pixel_subsample: 2
+
+  total_steps: 5000
+  optim_cam_after_steps: 3000
+  skinning_corr_start_steps: 4000
+
+  random_bg: False
+  lambda_rgb: 1.0
+  lambda_dep: 0.05
+  lambda_normal: 0.2
+  geo_reg_start_steps: 500
+  lambda_acc_rot_reg: 0.3
+  lambda_acc_xyz_reg: 0.3
+  lambda_arap_coord: 1.0 #3.0
+  lambda_arap_len: 1.0 #3.0
+
+  viz_interval: 999
+
+  d_ctrl:
+    densify_steps: 300
+    reset_steps: 1000
+    densify_max_grad: 0.0001
+    node_densify_max_grad: 0.0002
+    prune_opacity_th: 0.012
+    node_prune_opacity_th: 0.012
+    reset_opacity: 0.01
+  s_ctrl:
+    densify_steps: 600
+    reset_steps: 1000
+    prune_steps: 600
+    densify_max_grad: 0.0002
+    prune_opacity_th: 0.012
+    reset_opacity: 0.01

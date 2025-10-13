@@ -1,0 +1,22 @@
+NUM_SEMANTIC_CHANNELS: 32 #16
+Head:
+  sam2:
+    enable: False
+    path: sam2_feats.pth
+    head_type: cnn
+    encoder: []
+    decoder: [32, 256]
+
+  internvideo:
+    enable: False
+    path: internvideo_feats.pth
+    head_type: cnn
+    encoder: []
+    decoder: [32, 1408]
+
+  langseg:
+    enable: True
+    path: rgb_feature_langseg
+    head_type: cnn
+    encoder: []
+    decoder: [32, 512]

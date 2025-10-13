@@ -1,0 +1,14 @@
+prepare:
+  intervals: [1] #[1, 4, 8, 16] #[1, 4]
+  depth_mode: zoe
+  zoe_mode: N
+  # for query cotracker
+  num_long_term_d: 15000 # 20000
+  chunk_long_term_d: 12000 # ! super important
+  chunk_long_term: 10000
+  chunk_long_term_s: 10000
+  epi_th_long_term: 100 # ! also sensitive to the sub-sample freq
+  long_track_keyframe_interval: 8 # ! 8 for 4x, 32 for full seq ! this should be adapt to the subsample
+  # sky
+  dummy_sky_seg: True # not segment out sky
+  dense_interval: True

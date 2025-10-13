@@ -1,0 +1,140 @@
+# Full model, consider 16G vram
+dataset_mode: iphone
+
+spatial_unit_meter: 0.02
+spatial_unit_world_flag: False
+
+t_subsample: 1
+temporal_diff_shift: [2, 8, 16]
+temporal_diff_weight: [0.6, 0.4, 0.3]
+
+max_sph_order: 3 #1
+pix_subsample: 1
+flow_interval: [1, 4]
+
+dino_name: dino # dino_lr
+semantic_th_quantile: 0.9 #0.95
+
+use_short_flow: False
+
+recomp_dyn_mask_consider_inside_dyn: True
+
+mask_prop_steps: 6
+mask_consider_track: True
+mask_init_erode: 5
+
+epi_error_th_factor: 400.0 # default
+depth_boundary_th: 0.3 #100.0
+
+normal_patch_size: 3
+normal_nn_dist_th: 0.03
+normal_nn_min_cnt: 3
+
+static_scf:
+  total_steps: 2000
+  lr_cam_f: 0.001
+  fov_fallback: 54.0
+  fov_search_min_interval: 8
+  fov_interval_single: False
+
+static_gs:
+  n_init: 50000
+  total_steps: 4000
+  optim_cam_after_steps: 3000
+
+  lambda_rgb: 1.0
+  lambda_dep: 0.5
+  lambda_normal: 0.1
+  random_bg: False
+  lr_sph_rest_factor: 8.0 #4.0
+
+  lr_p: 0.0003
+  lr_p_final: 0.000003
+  lr_q: 0.001
+  lr_s: 0.01
+  lr_o: 0.3
+  lr_sph: 0.0025
+
+  s_ctrl:
+    reset_steps: 1500
+    prune_opacity_th: 0.05
+    reset_opacity: 0.05
+
+dyn_scf:
+  lr_p: 0.1
+  lr_q: 0.1
+  max_node_num: 8192
+  topo_k: 10
+  resample_flag: False # ! modified
+
+  # stage4_steps: 0
+  grow_node_by_coverage: False
+
+  topo_curve_dist_top_k: 7
+  topo_curve_dist_sample_T: 80
+
+  sigma_max_ratio: 10.0 #1.0 #0.6 #1.0
+  sigma_init_ratio: 1.0
+
+  topo_th_ratio: 5.0 # 10 ! important
+  vel_jitter_th_value: 0.5 # bear large velocity
+  min_valid_cnt_ratio: 0.1
+
+  mlevel_list: [1, 8, 16]
+  mlevel_k_list: [16, 8, 8]
+  mlevel_w_list: [0.4, 0.3, 0.3]
+  mlevel_resample_steps: 32
+
+  viz_interval: 100 #-1
+
+dyn_gs:
+  topo_th_ratio: 3.0
+
+  s_gs_ctrl_start_ratio: 0.0 # ! modified
+  opa_init_value: 0.01 # ! modified
+
+  n_init: 30000 # 1,3
+  init_key_frames: 50 #10 #20 # 10
+  leaf_local_flag: True #False
+  model_pixel_subsample: 2
+
+  total_steps: 8000
+  optim_cam_after_steps: 5000
+  skinning_corr_start_steps: 10000000000 # ! disable #6000
+
+  lr_p: 0.0003
+  lr_p_final: 0.000003
+  lr_q: 0.001
+  lr_s: 0.01
+  lr_o: 0.3
+  lr_sph: 0.0025
+  lr_np: 0.00016
+  lr_np_final: 0.0000016
+  lr_nq: 0.001
+  lr_nq_final: 0.00001
+  lr_nsig: 0.01
+  lr_w: 0.1
+  lr_sph_rest_factor: 8.0 #4.0
+
+  lambda_rgb: 1.0
+  lambda_dep: 0.05
+  lambda_normal: 0.2
+  geo_reg_start_steps: 1000
+
+  lambda_acc_rot_reg: 1.0
+  lambda_acc_xyz_reg: 1.0
+  lambda_arap_coord: 3.0 #3.0
+  lambda_arap_len: 3.0 #3.0
+
+  viz_interval: -1
+  d_ctrl:
+    densify_max_grad: 0.0002
+    node_densify_max_grad: 0.0004
+
+    prune_opacity_th: 0.05 # 0.011
+    node_prune_opacity_th: 0.05 # 0.011
+    reset_opacity: 0.01
+  s_ctrl:
+    densify_max_grad: 0.00025
+    prune_opacity_th: 0.012
+    reset_opacity: 0.01

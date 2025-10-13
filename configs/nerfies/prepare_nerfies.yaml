@@ -1,0 +1,15 @@
+prepare:
+  nerfies_flag: True
+  intervals: [1, 2] #[1, 4, 8, 16, 32] #[1, 4] # ! the problem for baking with last frame would be the lenght not divied by 4
+  depth_mode: uni
+  # for query cotracker
+  num_long_term_d: 8192 # 20000
+  chunk_long_term_d: 8192
+  num_long_term_s: 8192
+  chunk_long_term_s: 8192
+  epi_th_long_term: 300 # ! fps sensitive
+  long_track_keyframe_interval: 16 # ! fps sensitive
+  long_track_dyn_subsample: 2
+  # sky
+  dummy_sky_seg: True # not segment out sky
+  dense_interval: True
